@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
+import { signupUser } from "../api";
 import "./auth.css";
 
 const Signup = () => {
@@ -19,7 +19,7 @@ const Signup = () => {
       setLoading(true);
 
       try {
-        const res = await axios.post('http://localhost:3001/api/auth/signup', {
+        const res = await signupUser({
           name,
           email,
           password,
@@ -32,7 +32,7 @@ const Signup = () => {
         if (res.data?.user?.role === 'admin' && res.data.user.loginId) {
           setAdminLoginId(res.data.user.loginId);
         } else {
-          navigate('/login');
+          navigate('/user/dashboard');
         }
       } catch (err) {
         console.error('Signup error:', err.response?.data || err.message);

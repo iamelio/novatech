@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { loginUser } from "../api";
 import "./auth.css";
 
 const Login = () => {
@@ -16,24 +16,23 @@ const Login = () => {
     setLoading(true);
 
      try {
-    const res = await axios.post("http://localhost:3000/api/auth/login", {
+    const res = await loginUser({
        email,
        password,
       });
 
       console.log('Login response:', res.data);
       localStorage.setItem("token", res.data.token);
-     
+
 
      if(res.data.user.role ==="admin"){
       navigate("/admin/dashboard");
       console.log("Login successful. The user is an admin.");
      }else{
-      // navigate("/user/dashboard");
-      navigate("/signup");
+      navigate("/user/dashboard");
       console.log("Login successful. The user is a normie user.");
      }
- 
+
      } catch (err) {
       console.error('Login error:', err.response?.data || err.message);
       setError(err.response?.data?.msg || "Login failed. Please check your credentials.");
