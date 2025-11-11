@@ -1,0 +1,89 @@
+.dashboard {
+  background: #f8fafc;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+}
+
+.header-section {
+  background-color: #2563eb;
+  color: white;
+  padding: 40px;
+  text-align: center;
+  border-radius: 0 0 20px 20px;
+}
+
+.header-section h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.header-buttons {
+  margin-top: 20px;
+}
+
+.primary-btn,
+.secondary-btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  margin: 0 8px;
+  cursor: pointer;
+  border: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.primary-btn {
+  background: white;
+  color: #2563eb;
+}
+
+.secondary-btn {
+  background: #1e3a8a;
+  color: white;
+}
+
+.primary-btn:hover {
+  background: #e5e7eb;
+}
+
+.secondary-btn:hover {
+  background: #3748b5;
+}
+
+.stats-section {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 30px 0;
+  padding: 0 20px;
+}
+
+.stat-card {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  margin: 10px;
+}
+
+.stat-card h3 {
+  color: #2563eb;
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.recent-section {
+  display: flex;
+  justify-content: space-around;
+  padding: 30px;
+}
+
+.recent-card {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  width: 40%;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
