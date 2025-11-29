@@ -4,7 +4,7 @@ import { config } from 'dotenv';
 
 config();
 
-export default function (req, res, next) {
+export function verifyToken(req, res, next) {
     const authHeader = req.headers.authorization;
     if (!authHeader?.startsWith('Bearer ')) {
         return res.status(401).json({ msg: "No token, authorization denied" });
@@ -16,14 +16,24 @@ export default function (req, res, next) {
         // attach user role for downstream handlers
         // we fetch the user and attach role to request
         User.findById(req.userId).select('role').then(user => {
-            if (user) req.userRole = user.role;
+            if (user) {
+                req.userRole = user.role;
+            }
             next();
         }).catch(err => {
             console.error('Auth middleware error fetching user:', err);
-            next();
+            next(); // proceed even if user fetch fails, downstream should handle missing role
         });
     } catch (error) {
         console.error(error);
         res.status(401).json({ msg: "Token is not valid" });
+    }
+};
+
+export function verifyAdmin(req, res, next) {
+    if (req.userRole && req.userRole === 'admin') {
+        next();
+    } else {
+        return res.status(403).json({ msg: "Admin resource. Access denied." });
     }
 };

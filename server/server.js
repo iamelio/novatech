@@ -11,12 +11,16 @@ const __dirname = dirname(__filename);
 import connectDB from "./config/db.js";
 import authRoutes from "./Routes/authRoutes.js";
 import textRoutes from "./Routes/textRoutes.js";
+import appointmentRoutes from "./Routes/appointmentRoutes.js";
+import testResultRoutes from "./Routes/testResultRoutes.js";
 
 dotenv.config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Connect to MongoDB
 mongoose
@@ -30,6 +34,8 @@ app.use(express.static(path.join(__dirname, "..", "sen201project", "build")));
 // API routes - must come after static files
 app.use("/api/auth", authRoutes);
 app.use("/api/test", textRoutes);
+app.use("/api/appointments",appointmentRoutes);
+app.use("/api/results",testResultRoutes);
 
 // API health check endpoint
 app.get("/api", (req, res) => res.json({ msg: "NovaTech API is running" }));

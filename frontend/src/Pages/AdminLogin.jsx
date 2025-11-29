@@ -24,6 +24,7 @@ export default function AdminLogin(){
       }
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('role', res.data.user.role);
+      localStorage.setItem('name', res.data.user.name);
       navigate('/admin/dashboard');
     }catch(err){
       console.error('Admin login error:', err.response?.data || err.message);

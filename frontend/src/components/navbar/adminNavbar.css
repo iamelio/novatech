@@ -1,7 +1,7 @@
-/* src/components/navbar/navbar.css */
+/* src/components/navbar/adminNavbar.css */
 
-.user-navbar {
-  background-color: rgba(0, 123, 255, 0.7); /* Translucent blue */
+.admin-navbar {
+  background-color: rgba(0, 86, 179, 0.7); /* Translucent darker blue for admin */
   padding: 1rem 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -35,7 +35,7 @@
 }
 
 .navbar-links a:hover {
-  color: #f0f0f0;
+  color: #e0e0e0;
 }
 
 .navbar-user {

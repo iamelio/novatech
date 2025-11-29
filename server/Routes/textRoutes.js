@@ -1,13 +1,13 @@
 import express from 'express';
 import { createTest, getUserTests, deleteTest } from '../controllers/textController.js';
-import authMiddleware from '../middleware/authMiddleware.js';
+import { verifyToken } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-router.use(authMiddleware);
+router.use(verifyToken);
 
-router.post('/', authMiddleware, createTest);
-router.get('/', authMiddleware, getUserTests);
-router.delete('/:id', authMiddleware, deleteTest);
+router.post('/', verifyToken, createTest);
+router.get('/', verifyToken, getUserTests);
+router.delete('/:id', verifyToken, deleteTest);
 
 export default router;

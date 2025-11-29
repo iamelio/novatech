@@ -24,6 +24,7 @@ const Login = () => {
       console.log('Login response:', res.data);
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("role", res.data.user.role);
+      localStorage.setItem("name", res.data.user.name);
 
 
      if(res.data.user.role ==="admin"){

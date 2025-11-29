@@ -1,0 +1,95 @@
+/* src/styles/UserDashboard.css */
+
+/* Main container for the dashboard */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f8f9fa;
+}
+
+/* Header styles */
+.dashboard-header {
+  background-color: #ffffff;
+  padding: 20px;
+  border-bottom: 1px solid #dee2e6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard-header h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #343a40;
+}
+
+/* Main content area */
+.dashboard-main {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Home page styles */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  color: #ffffff; /* Ensure text is visible on background */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow for readability */
+}
+
+.home-header-text {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for text */
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.home-header-text h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.home-header-text p {
+  font-size: 1.2rem;
+  color: #ffffff;
+  margin-top: 1rem;
+}
+
+.home-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.appointment-button,
+.doctors-button {
+  display: inline-block;
+  background-color: #007bff;
+  color: #ffffff;
+  padding: 0.8rem 1.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: background-color 0.3s;
+}
+
+.appointment-button:hover,
+.doctors-button:hover {
+  background-color: #0056b3;
+}
+
+.doctors-button {
+  background-color: #28a745; /* A different color for distinction */
+}
+
+.doctors-button:hover {
+  background-color: #218838;
+}

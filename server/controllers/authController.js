@@ -102,5 +102,14 @@ export const signup = async (req, res) => {
     }
 };
 
+export const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find({ role: "user" });
+    res.json(users);
+  } catch (err) {
+    res.status(500).json({ message: "Fetch failed" });
+  }
+};
+
 
 

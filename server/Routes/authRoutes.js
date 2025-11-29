@@ -1,5 +1,6 @@
 import express from 'express';
-import { signup, login } from '../controllers/authController.js';
+import { signup, login, getAllUsers } from '../controllers/authController.js';
+import { verifyToken, verifyAdmin } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
@@ -14,5 +15,8 @@ router.get('/signup', (req, res) => {
 // POST routes for authentication
 router.post('/signup', signup);
 router.post('/login', login);
+
+// GET route for all users (admin only)
+router.get('/users', verifyToken, verifyAdmin, getAllUsers);
 
 export default router;
