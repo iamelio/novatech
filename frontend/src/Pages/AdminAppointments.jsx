@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import API from "../api";
 import AdminNavbar from "../components/navbar/AdminNavbar";
 import "../styles/AdminAppointments.css";
 
@@ -9,10 +9,7 @@ const AdminAppointments = () => {
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
-        const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:3001/api/appointments/all", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const res = await API.get("/appointments/all");
         setAppointments(res.data);
       } catch (err) {
         console.error(err);
@@ -23,14 +20,7 @@ const AdminAppointments = () => {
 
   const handleStatusUpdate = async (id, status) => {
     try {
-      const token = localStorage.getItem("token");
-      await axios.put(
-        `http://localhost:3001/api/appointments/${id}`,
-        { status },
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      await API.put(`/appointments/${id}`, { status });
       setAppointments(
         appointments.map((app) => (app._id === id ? { ...app, status } : app))
       );

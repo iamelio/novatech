@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import UserNavbar from "../components/navbar/UserNavbar.jsx";
 import "../styles/Result.css"; // Import the new Result.css
-import axios from "axios";
+import API from "../api";
 
 const Result = () => {
   const [username, setUsername] = useState("");
@@ -14,10 +14,7 @@ const Result = () => {
 
     const fetchResults = async () => {
       try {
-        const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:3001/api/results/mine", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const res = await API.get("/results/mine");
         setResults(res.data);
       } catch (err) {
         console.error(err);
@@ -37,6 +34,9 @@ const Result = () => {
     }
     return result.status === filterStatus;
   });
+
+  // Construct the base URL for downloads by removing /api from the API base URL
+  const downloadBaseUrl = API.defaults.baseURL.replace("/api", "");
 
   return (
     <div className="dashboard-container">
@@ -133,7 +133,7 @@ const Result = () => {
                       {result.status === "Received" && (
                         <>
                           <a
-                            href={`http://localhost:3001/${result.filePath}`}
+                            href={`${downloadBaseUrl}/${result.filePath}`}
                             download
                             target="_blank"
                             rel="noopener noreferrer"

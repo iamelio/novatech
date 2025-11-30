@@ -4,7 +4,7 @@ import Calendar from 'react-calendar'; // Changed import
 import 'react-calendar/dist/Calendar.css'; // Added react-calendar styles
 import './auth.css';
 import '../styles/Appointment.css';
-import axios from "axios";
+import API from "../api";
 
 const Appointments = () => {
   const [username, setUsername] = useState("");
@@ -30,13 +30,9 @@ const Appointments = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const token = localStorage.getItem("token");
-      await axios.post(
-        "http://localhost:3001/api/appointments/create",
-        { date: date.toDateString(), time, reason: purpose },
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
+      await API.post(
+        "/appointments/create",
+        { date: date.toDateString(), time, reason: purpose }
       );
       setShowPopup(true); // Show pop-up on submission
       // Optionally, hide the pop-up after a few seconds

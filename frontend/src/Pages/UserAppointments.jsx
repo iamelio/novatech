@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import API from "../api";
 import UserNavbar from "../components/navbar/UserNavbar";
 
 const UserAppointments = () => {
@@ -8,10 +8,7 @@ const UserAppointments = () => {
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
-        const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:3001/api/appointments", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const res = await API.get("/appointments");
         setAppointments(res.data);
       } catch (err) {
         console.error(err);

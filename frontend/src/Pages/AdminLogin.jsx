@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import API from '../api';
 import './auth.css';
 
 export default function AdminLogin(){
@@ -16,7 +16,7 @@ export default function AdminLogin(){
     setError('');
     setLoading(true);
     try{
-      const res = await axios.post('http://localhost:3001/api/auth/login', { email, password, loginId });
+      const res = await API.post('/auth/login', { email, password, loginId });
       if (res.data?.user?.role !== 'admin'){
         setError('This login ID does not belong to an admin.');
         setLoading(false);

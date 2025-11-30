@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import API from "../api";
 import AdminNavbar from "../components/navbar/AdminNavbar";
 import "../styles/Upload.css"; // Import the new CSS
 
@@ -12,10 +12,7 @@ const Upload = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:3001/api/auth/users", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const res = await API.get("/auth/users");
         setUsers(res.data);
       } catch (err) {
         console.error(err);
@@ -39,14 +36,12 @@ const Upload = () => {
     formData.append("resultFile", file);
 
     try {
-      const token = localStorage.getItem("token");
-      await axios.post(
-        `http://localhost:3001/api/results/${selectedUser}`,
+      await API.post(
+        `/results/${selectedUser}`,
         formData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
           },
         }
       );
